@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'asciidoc-to-html-example'
+rootProject.name = 'git-2015-session'
