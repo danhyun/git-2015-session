@@ -2,72 +2,85 @@
 Dan Hyun <https://github.com/danhyun[@danhyun]>
 2015-03-10
 
-== Introduction
+////
+Topics to cover
+the core concepts
+differences from SVN
+best practices
+process
+tools
+migration
+////
 
-[%step]
-* This is a user manual for an example project.
-* This project does something.
-* We just haven't decided what that is yet.
+== What is Git?
 
-== Speaker Notes
+Cross platform, distributed version control system.
 
-Press the `*s*` key to access speaker notes.
+=== Brief Background
+ 
+[.step]
+* Created in 2005 by Linus Torvalds
+* https://git.wiki.kernel.org/index.php/GitFaq#Why_the_.27Git.27_name.3F[Named after Linus]
+* Used to maintain the https://github.com/torvalds/linux[Linux Kernel]
 
-[NOTE.speaker]
---
-You've unlocked the super secret notes area.
-Neat huh?
---
+=== Motivations for Git
 
-== Source Code
+[.step]
+* Speed - clone, branch, etc.
+* Simplicity* - no separate admin binaries
+* Flexibility - supports multiple protocols, methods of contributions, etc.
 
-[source,java]
-.Java code from project
-----
-include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
-----
+=== Git in action
 
-This page was built by the following command:
+.As of 2015-03-03
+image::github-linux-kernel.PNG[]
 
- $ ./gradlew asciidoctor
+=== Git in action
 
-== Blank screen
+* *505,761* commits!
+* *408* releases
+* *4,723* contributors
 
-You can press `*b*` or `*.*` to blank your current screen.
+== Git fundamentals
 
-Hit it again to bring it back.
+* Snapshots
+* Tracking changes
 
-== Overview
+== Snapshots
 
-Press the `*esc*` key to get an overview of your slides.
+== Tracking Changes
 
-== Including documents from subdir
+== Git commands
 
-.include::subdir/_b.adoc[]
+=== `init`
 
-include::subdir/_b.adoc[]
+=== `add`
 
-== Images
+=== `commit`
 
-[.thumb]
-image::sunset.jpg[scaledwidth=75%]
+=== `push`
 
-== Attributes
+== Git config
 
-Press the down arrow key to see the next sub-slide.
+* project
+* user
+* system
 
-=== Attributes Part 1
-.Built-in
-asciidoctor-version:: {asciidoctor-version}
-safe-mode-name:: {safe-mode-name}
-docdir:: {docdir}
-docfile:: {docfile}
-imagesdir:: {imagesdir}
+== Best practices
 
-=== Attributes Part 2
-.Custom
-project-version:: {project-version}
-sourcedir:: {sourcedir}
-endpoint-url:: {endpoint-url}
+* Use commandline exclusively in the beginning
+* Adhere to your team's work flow
 
+== Two popular models
 
+* Develop -> Staging -> Master
+* Commit to master
+
+== Resources
+
+http://scottchacon.com/2011/08/31/github-flow.html[Git Flow]:: Blog article by Scott Chacon about a workflow
+http://git-scm.com/book/en/v2[Pro Git]:: Free ebook by Scott Chacon (Github) and Ben Straub
+http://gitimmersion.com/[Git Immersion]:: Series of labs to learn git fundamentals
+https://www.youtube.com/watch?v=4XpnKHJAok8[Linus Torvalds on git]:: Video - Linus talks about git
+
+== Questions?
