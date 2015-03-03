@@ -15,7 +15,8 @@ cache:
   - $HOME/.gradle
 
 before_script:
-  - git fetch
+  - git fetch --unshallow
+  - git checkout master
 
 script:
   - ./gradlew clean asciidoctor -i
