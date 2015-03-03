@@ -115,6 +115,7 @@ watch {
 }
 
 task publish(type: GradleBuild) {
-  buildFile = 'gradle/publish.gradle'
+  buildFile = 'publish.gradle'
   tasks = ['publishGhPages']
+  System.setProperty('jna.nosys', "true")
 }
