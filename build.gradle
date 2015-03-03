@@ -60,7 +60,7 @@ asciidoctor {
   dependsOn jrubyPrepareGems
 
   sources {
-    include 'example-manual.adoc'
+    include 'index.adoc'
   }
 
   resources {
@@ -112,4 +112,9 @@ watch {
     files fileTree(dir: 'src')
     tasks 'asciidoctor'
   }
+}
+
+task publish(type: GradleBuild) {
+  buildFile = 'gradle/publish.gradle'
+  tasks = ['publishGhPages']
 }
