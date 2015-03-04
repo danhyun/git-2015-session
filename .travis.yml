@@ -25,7 +25,8 @@ script:
   - git config user.email "danhyun@users.noreply.github.com"
   - git config user.name "Dan hyun"
   - git rm -r -f -q . --ignore-unmatch
-  - mv ../git-2015-session/build/asciidoc/revealjs .
+  - rm -rf .
+  - mv ../git-2015-session/build/asciidoc/revealjs/* .
   - git add .
   - git commit -m "Publishing github pages"
   - git push "https://${GH_TOKEN}@github.com/danhyun/git-2015-session.git" gh-pages > /dev/null 2>&1
