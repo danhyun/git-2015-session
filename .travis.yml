@@ -19,14 +19,14 @@ before_install:
 
 script:
   - ./gradlew clean asciidoctor -i
-  - tree
+  - pwd && ls -ltr
   - cd ..
+  - pwd && ls -ltr
   - git clone --branch=gh-pages git://github.com/danhyun/git-2015-session.git gh-pages
   - cd gh-pages
+  - pwd && ls -ltr
   - git config user.email "danhyun@users.noreply.github.com"
   - git config user.name "Dan hyun"
-  - ls -ltr
-  - tree
   - git rm -r -f ./*
   - mv ../git-2015-session/build/asciidoctor/revealjs .
   - git add .
