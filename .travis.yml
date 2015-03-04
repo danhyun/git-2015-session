@@ -19,7 +19,7 @@ before_install:
 
 script:
   - ./gradlew clean asciidoctor -i
-  - ./gradlew publish -i -PghToken=${GH_TOKEN}
+#  - ./gradlew publish -i -PghToken=${GH_TOKEN}
 
 after_script:
   - cd ..
