@@ -1,17 +1,34 @@
-= reveal.js Example
+= Git Training Session 2015
+Dan Hyun<https://github.com/danhyun[@danhyun]>
 
-An example project that demonstrates how to convert AsciiDoc to reveal.js using the Asciidoctor Gradle plugin.
+image:https://travis-ci.org/danhyun/git-2015-session.svg?branch=master["Build Status", link="https://travis-ci.org/danhyun/git-2015-session"]
 
-== Usage
+The generated reveal.js presentation can be found at http://danhyun.github.io/git-2015-session
 
-Convert the AsciiDoc to reveal.js by invoking the 'asciidoctor' goal:
+This repo contains the source files that are used generate the presentation.
+The presentation is written in http://asciidoctor.org/[Asciidoctor] using the http://asciidoctor.org/docs/install-and-use-revealjs-backend/[reveal.js backend].
+The layout and format was inspired from the reveal.js example of http://rwinch.github.io/asciidoctor-gradle-examples/[asciidoctor-gradle-examples].
 
- $ ./gradlew clean asciidoctor
+== Local Build
+To build locally, run:
 
-== IntelliJ
+  $ ./gradlew clean asciidoctor
 
-If you're using IntelliJ you can generate the IDE's files via:
+== Generated Presentation
+The outputs will be located at:
 
- $ ./gradlew idea
+  build/asciidoc/revealjs
 
-Open the file _build/asciidoc/reveal/example-manual.html_ in your browser to see the generated revealjs file.
+== Using IntelliJ
+If you want to use IntelliJ, run:
+
+  $ ./gradlew idea
+  
+To generate the IntelliJ specific files.
+
+== Auto-recompile Asciidoctor files
+To have Gradle automatically recompile the asciidoctor documents, run:
+
+  $ ./gradlew clean asciidoctor watch
+  
+This utilizes the https://github.com/bluepapa32/gradle-watch-plugin[gradle-watch-plugin] to watch files for changes.
