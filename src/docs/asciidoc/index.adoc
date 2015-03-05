@@ -53,9 +53,10 @@ image::github-linux-kernel.PNG[]
 [.step]
 * Objects
 * References
-* Distributed
+* State
+* Distributed Nature
 
-=== Objects
+==  Objects
 
 * Every file is an object
 * Every commit is an object
@@ -67,7 +68,7 @@ each commit points to its parent +
 commit points to a set of objects +
 commits/object tree forms history
 
-=== References
+== References
 
 * `HEAD` is a reference
 * Branches are references
@@ -77,7 +78,19 @@ commits/object tree forms history
 [NOTE.speaker]
 References point to objects
 
-=== Distributed
+== State
+
+A given file can be in one of these four states:
+
+* Untracked
+* Tracked - not modified
+* Tracked - staged for commit
+* Committed
+
+[NOTE.speaker]
+Tracked - not modified and committed are the same but distinction helps in illustrating a flow 
+
+== Distributed
 
 * No central server or authority
 * Most actions performed locally
@@ -88,13 +101,25 @@ Each user contains a complete working copy of the files under revision +
 Full commit history/logs +
 All branches +
 
-== State
-
-== Snapshots
-
-== Tracking Changes
-
 == Git commands
+
+== Git config
+
+* project
+* user
+* system
+
+[NOTE.speaker]
+Before working with git, you need to configure username and email
+
+=== Setup identity
+
+----
+$ git config --global user.email "dan@hyunlabs.com"
+$ git config --global user.name "Dan Hyun"
+----
+
+INFO: This information goes into your commits
 
 == git init
 ----
@@ -129,18 +154,72 @@ $ find .git/objects/ -type f
 ----
 
 == git commit
+[source,bash,subs="verbatim,quotes"]
+----
+$ git commit _[-m <message>]_
+----
 
 === `commit`
+----
+$ git commit -m "Initial commit"
+[master (root-commit) d400d55] Initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hello
+----
+
+=== git objects
+----
+$ find .git/objects -type f
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 <1>
+.git/objects/f9/66952d7e0715683ee935d201cd4ab22736c831 <2>
+.git/objects/d4/00d55d841364e0bdf479c5e172210954ae3d5c <3>
+----
+<1> Our `hello` file as a blob
+<2> Tree object containing fileset for commit
+<3> Commit object containing author and tree object
+
+=== Differentiating git object types
+
+Object types?
+
+----
+$ git cat-file -t e69de
+blob
+$ git cat-file -t f9669
+tree
+$ git cat-file -t d400d
+commit
+----
+
+=== git references
+----
+$ cat .git/refs/heads/master
+d400d55d841364e0bdf479c5e172210954ae3d5c
+----
 
 == git push
 
 === `push`
 
-== Git config
+== git add gotcha
 
-* project
-* user
-* system
+When modifying an added file, you'll need to re-add to stage the latest changes otherwise they won't make the commit.
+
+Demonstrate git add stuff, demonstrate `git commit -am`
+
+== reverting work
+
+show how to reset files to previous version
+
+== git stash
+
+show how stashing works
+
+== conflicts
+
+show how conflicts work
+
+introduce merge, fetch, pull, remote update rebasing
 
 == Best practices
 
@@ -149,7 +228,7 @@ TIP: Use command line initially to get a feel for the rhythm/terminology
 * Use commandline exclusively in the beginning
 * Adhere to your team's work flow
 
-== Two popular models
+== Two workflows
 
 * Develop -> Staging -> Master
 * Commit to master
