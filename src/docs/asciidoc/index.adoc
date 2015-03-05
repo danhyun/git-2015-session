@@ -26,6 +26,7 @@ source control management system.
 
 === Motivations for Git
 
+[horizontal]
 Performance:: _fast_, reliable file integrity
 Simplicity:: no separate admin binaries
 Flexibility:: supports multiple protocols, methods of contributions, etc.
@@ -47,21 +48,47 @@ image::github-linux-kernel.PNG[]
 408 releases +
 4,723 contributors +
 
-== Distributed?
+== Fundamental concepts
 
-* No central server
+[.step]
+* Objects
+* References
+* Distributed
+
+=== Objects
+
+* Every file is an object
+* Every commit is an object
+* These objects form a tree
+
+[NOTE.speaker]
+every file is a compressed binary object +
+each commit points to its parent +
+commit points to a set of objects +
+commits/object tree forms history
+
+=== References
+
+* `HEAD` is a reference
+* Branches are references
+* Tags are references
+* Remotes are references
+
+[NOTE.speaker]
+References point to objects
+
+=== Distributed
+
+* No central server or authority
 * Most actions performed locally
 
 [NOTE.speaker]
-No central authority +
+Concept of central authority is social +
 Each user contains a complete working copy of the files under revision +
 Full commit history/logs +
 All branches +
 
-== Git fundamentals
-
-* Snapshots
-* Tracking changes
+== State
 
 == Snapshots
 
@@ -69,11 +96,43 @@ All branches +
 
 == Git commands
 
+== git init
+----
+$ git init demo
+Initialized empty Git repository in /home/vagrant/demo/.git/
+----
+
 === `init`
+[source,terminal,subs="verbatim,quotes"]
+----
+include::git-outputs/git-tree-init[]
+----
+<1> Current branch reference
+<2> Blob storage
+<3> Reference locations
+
+== git add
+[source,subs="verbatim,quotes"]
+----
+$ git add _<file or path>_
+----
 
 === `add`
+----
+include::git-outputs/git-add[]
+----
+
+=== git objects
+----
+$ find .git/objects/ -type f
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+----
+
+== git commit
 
 === `commit`
+
+== git push
 
 === `push`
 
@@ -84,6 +143,8 @@ All branches +
 * system
 
 == Best practices
+
+TIP: Use command line initially to get a feel for the rhythm/terminology
 
 * Use commandline exclusively in the beginning
 * Adhere to your team's work flow
