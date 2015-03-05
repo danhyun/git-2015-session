@@ -97,20 +97,26 @@ flexibility:: ssh, ftp, http, email patch, user config</aside></section><section
 <aside class="notes">505,761 commits<br />
 408 releases<br />
 4,723 contributors<br /></aside></section></section>
-<section><section id="fundamental-concepts"><h2>Fundamental concepts</h2><div class="ulist step"><ul><li class="fragment"><p>Objects</p></li><li class="fragment"><p>References</p></li><li class="fragment"><p>Distributed</p></li></ul></div></section><section id="objects"><h2>Objects</h2><div class="ulist"><ul><li><p>Every file is an object</p></li><li><p>Every commit is an object</p></li><li><p>These objects form a tree</p></li></ul></div>
+<section id="fundamental-concepts"><h2>Fundamental concepts</h2><div class="ulist step"><ul><li class="fragment"><p>Objects</p></li><li class="fragment"><p>References</p></li><li class="fragment"><p>State</p></li><li class="fragment"><p>Distributed Nature</p></li></ul></div></section>
+<section id="objects"><h2>Objects</h2><div class="ulist"><ul><li><p>Every file is an object</p></li><li><p>Every commit is an object</p></li><li><p>These objects form a tree</p></li></ul></div>
 <aside class="notes">every file is a compressed binary object<br />
 each commit points to its parent<br />
 commit points to a set of objects<br />
-commits/object tree forms history</aside></section><section id="references"><h2>References</h2><div class="ulist"><ul><li><p><code>HEAD</code> is a reference</p></li><li><p>Branches are references</p></li><li><p>Tags are references</p></li><li><p>Remotes are references</p></li></ul></div>
-<aside class="notes">References point to objects</aside></section><section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li></ul></div>
+commits/object tree forms history</aside></section>
+<section id="references"><h2>References</h2><div class="ulist"><ul><li><p><code>HEAD</code> is a reference</p></li><li><p>Branches are references</p></li><li><p>Tags are references</p></li><li><p>Remotes are references</p></li></ul></div>
+<aside class="notes">References point to objects</aside></section>
+<section id="state"><h2>State</h2><div class="paragraph"><p>A given file can be in one of these four states:</p></div>
+<div class="ulist"><ul><li><p>Untracked</p></li><li><p>Tracked - not modified</p></li><li><p>Tracked - staged for commit</p></li><li><p>Committed</p></li></ul></div>
+<aside class="notes">Tracked - not modified and committed are the same but distinction helps in illustrating a flow</aside></section>
+<section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li></ul></div>
 <aside class="notes">Concept of central authority is social<br />
 Each user contains a complete working copy of the files under revision<br />
 Full commit history/logs<br />
-All branches<br /></aside></section></section>
-<section id="state"><h2>State</h2></section>
-<section id="snapshots"><h2>Snapshots</h2></section>
-<section id="tracking-changes"><h2>Tracking Changes</h2></section>
+All branches<br /></aside></section>
 <section id="git-commands"><h2>Git commands</h2></section>
+<section><section id="git-config"><h2>Git config</h2><div class="ulist"><ul><li><p>project</p></li><li><p>user</p></li><li><p>system</p></li></ul></div><aside class="notes">Before working with git, you need to configure username and email</aside></section><section id="setup-identity"><h2>Setup identity</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git config --global user.email "dan@hyunlabs.com"
+$ git config --global user.name "Dan Hyun"</code></pre></div></div>
+<div class="paragraph"><p>INFO: This information goes into your commits</p></div></section></section>
 <section><section id="git-init"><h2>git init</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git init demo
 Initialized empty Git repository in /home/vagrant/demo/.git/</code></pre></div></div></section><section id="code-init-code"><h2><code>init</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="terminal language-terminal">.git
 ├── branches
@@ -148,12 +154,31 @@ Changes to be committed:
 
         new file:   hello</code></pre></div></div></section><section id="git-objects"><h2>git objects</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ find .git/objects/ -type f
 .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391</code></pre></div></div></section></section>
-<section><section id="git-commit"><h2>git commit</h2></section><section id="code-commit-code"><h2><code>commit</code></h2></section></section>
+<section><section id="git-commit"><h2>git commit</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="bash language-bash">$ git commit <em>[-m &lt;message&gt;]</em></code></pre></div></div></section><section id="code-commit-code"><h2><code>commit</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -m "Initial commit"
+[master (root-commit) d400d55] Initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hello</code></pre></div></div></section><section id="git-objects-2"><h2>git objects</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ find .git/objects -type f
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 <i class="conum" data-value="1"></i><b>(1)</b>
+.git/objects/f9/66952d7e0715683ee935d201cd4ab22736c831 <i class="conum" data-value="2"></i><b>(2)</b>
+.git/objects/d4/00d55d841364e0bdf479c5e172210954ae3d5c <i class="conum" data-value="3"></i><b>(3)</b></code></pre></div></div>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Our <code>hello</code> file as a blob</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Tree object containing fileset for commit</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Commit object containing author and tree object</td></tr></table></div></section><section id="differentiating-git-object-types"><h2>Differentiating git object types</h2><div class="paragraph"><p>Object types?</p></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git cat-file -t e69de
+blob
+$ git cat-file -t f9669
+tree
+$ git cat-file -t d400d
+commit</code></pre></div></div></section><section id="git-references"><h2>git references</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ cat .git/refs/heads/master
+d400d55d841364e0bdf479c5e172210954ae3d5c</code></pre></div></div></section></section>
 <section><section id="git-push"><h2>git push</h2></section><section id="code-push-code"><h2><code>push</code></h2></section></section>
-<section id="git-config"><h2>Git config</h2><div class="ulist"><ul><li><p>project</p></li><li><p>user</p></li><li><p>system</p></li></ul></div></section>
+<section id="git-add-gotcha"><h2>git add gotcha</h2><div class="paragraph"><p>When modifying an added file, you&#8217;ll need to re-add to stage the latest changes otherwise they won&#8217;t make the commit.</p></div>
+<div class="paragraph"><p>Demonstrate git add stuff, demonstrate <code>git commit -am</code></p></div></section>
+<section id="reverting-work"><h2>reverting work</h2><div class="paragraph"><p>show how to reset files to previous version</p></div></section>
+<section id="git-stash"><h2>git stash</h2><div class="paragraph"><p>show how stashing works</p></div></section>
+<section id="conflicts"><h2>conflicts</h2><div class="paragraph"><p>show how conflicts work</p></div>
+<div class="paragraph"><p>introduce merge, fetch, pull, remote update rebasing</p></div></section>
 <section id="best-practices"><h2>Best practices</h2><div class="admonitionblock tip"><table><tr><td class="icon"></td></tr></table><i class="icon-tip" title="Tip"></i>Use command line initially to get a feel for the rhythm/terminology</div>
 <div class="ulist"><ul><li><p>Use commandline exclusively in the beginning</p></li><li><p>Adhere to your team&#8217;s work flow</p></li></ul></div></section>
-<section id="two-popular-models"><h2>Two popular models</h2><div class="ulist"><ul><li><p>Develop &#8594; Staging &#8594; Master</p></li><li><p>Commit to master</p></li></ul></div></section>
+<section id="two-workflows"><h2>Two workflows</h2><div class="ulist"><ul><li><p>Develop &#8594; Staging &#8594; Master</p></li><li><p>Commit to master</p></li></ul></div></section>
 <section id="resources"><h2>Resources</h2><div class="dlist"><dl><dt class="hdlist1"><a href="http://scottchacon.com/2011/08/31/github-flow.html">Git Flow</a></dt><dd><p>Blog article by Scott Chacon about a workflow</p></dd><dt class="hdlist1"><a href="http://git-scm.com/book/en/v2">Pro Git</a></dt><dd><p>Free ebook by Scott Chacon (Github) and Ben Straub</p></dd><dt class="hdlist1"><a href="http://gitimmersion.com/">Git Immersion</a></dt><dd><p>Series of labs to learn git fundamentals</p></dd><dt class="hdlist1"><a href="https://www.youtube.com/watch?v=4XpnKHJAok8">Linus Torvalds on git</a></dt><dd><p>Video - Linus talks about git</p></dd></dl></div></section>
 <section id="questions"><h2>Questions?</h2></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script type="text/javascript">// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
