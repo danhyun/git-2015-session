@@ -108,21 +108,26 @@ commits/object tree forms history</aside></section>
 <section id="state"><h2>State</h2><div class="paragraph"><p>A given file can be in one of these four states:</p></div>
 <div class="ulist"><ul><li><p>Untracked</p></li><li><p>Tracked - not modified</p></li><li><p>Tracked - staged for commit</p></li><li><p>Committed</p></li></ul></div>
 <aside class="notes">Tracked - not modified and committed are the same but distinction helps in illustrating a flow</aside></section>
-<section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li></ul></div>
+<section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li><li><p>Eliminates issues (politics) around commit access</p></li></ul></div>
 <aside class="notes">Concept of central authority is social<br />
 Each user contains a complete working copy of the files under revision<br />
 Full commit history/logs<br />
 All branches<br /></aside></section>
-<section id="git-commands"><h2>Git commands</h2></section>
-<section><section id="git-config"><h2>Git config</h2><div class="ulist"><ul><li><p>project</p></li><li><p>user</p></li><li><p>system</p></li></ul></div><aside class="notes">Before working with git, you need to configure username and email</aside></section><section id="setup-identity"><h2>Setup identity</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git config --global user.email "dan@hyunlabs.com"
+<section id="git-vs-cvs-svn"><h2>Git vs CVS/SVN</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribute</th><th class="tableblock halign-left valign-top">Git</th><th class="tableblock halign-left valign-top">CVS/SVN</th></tr></thead><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Tracking changes</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Snapshot of all files</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Per file</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">History storage</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Compressed binary objects with SHA1 checksum</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Diff per file in .cvs/.svn directories</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Source of truth</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Distributed</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Centralized</p></td></tr></tbody></table></section>
+<section id="basic-git-commands"><h2>Basic Git commands</h2></section>
+<section><section id="git-config"><h2>Git config</h2><div class="paragraph"><p>Used to set and get configuration properties</p></div><div class="listingblock"><div class="title">Sample Truncated Config</div><div class="content"><pre class="CodeRay"><code class="terminal language-terminal">$ git config --list
+user.name=Dan Hyun
+user.email=dan@hyunlabs.com</code></pre></div></div></section><section id="config-locations"><h2>Config locations</h2><table class="tableblock frame-all grid-all" style="width:100%"><caption class="title">Table 1. Locations and corresponding flags</caption><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><thead><tr><th class="tableblock halign-left valign-top">Level</th><th class="tableblock halign-left valign-top">Config Location</th><th class="tableblock halign-left valign-top">Git flag</th></tr></thead><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Project</p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project}/.git/config</code></p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>--local</code></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>~/.gitconfig</code></p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>--global</code></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">System</p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>/etc/gitconfig</code></p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><code>--system</code></p></td></tr></tbody></table></section></section>
+<section id="who-am-i"><h2>Who am I?</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git config --global user.email "dan@hyunlabs.com"
 $ git config --global user.name "Dan Hyun"</code></pre></div></div>
-<div class="paragraph"><p>INFO: This information goes into your commits</p></div></section></section>
-<section><section id="git-init"><h2>git init</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git init demo
+<div class="paragraph"><p>INFO: This information goes into your commits</p></div>
+<aside class="notes">Before working with git, you need to configure username and email</aside></section>
+<section><section id="git-init"><h2>git init</h2><div class="paragraph"><p>Create a new Git repository</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git init demo
 Initialized empty Git repository in /home/vagrant/demo/.git/</code></pre></div></div></section><section id="code-init-code"><h2><code>init</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="terminal language-terminal">.git
 ├── branches
-├── config
+├── <strong>config</strong> <i class="conum" data-value="1"></i><b>(1)</b>
 ├── description
-├── <strong>HEAD</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+├── <strong>HEAD</strong> <i class="conum" data-value="2"></i><b>(2)</b>
 ├── hooks
 │   ├── applypatch-msg.sample
 │   ├── commit-msg.sample
@@ -135,14 +140,14 @@ Initialized empty Git repository in /home/vagrant/demo/.git/</code></pre></div><
 │   └── update.sample
 ├── info
 │   └── exclude
-├── <strong>objects</strong> <i class="conum" data-value="2"></i><b>(2)</b>
+├── <strong>objects</strong> <i class="conum" data-value="3"></i><b>(3)</b>
 │   ├── info
 │   └── pack
-└── <strong>refs</strong> <i class="conum" data-value="3"></i><b>(3)</b>
+└── <strong>refs</strong> <i class="conum" data-value="4"></i><b>(4)</b>
     ├── heads
     └── tags</code></pre></div></div>
-<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Current branch reference</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Blob storage</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Reference locations</td></tr></table></div></section></section>
-<section><section id="git-add"><h2>git add</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git add <em>&lt;file or path&gt;</em></code></pre></div></div></section><section id="code-add-code"><h2><code>add</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ touch hello
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Project level config file</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Current branch reference</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Blob storage</td></tr><tr><td><i class="conum" data-value="4"></i><b>4</b></td><td>Reference locations</td></tr></table></div></section></section>
+<section><section id="git-add"><h2>git add</h2><div class="paragraph"><p>Stages the given file(s) as is to the index</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git add <em>&lt;file or path&gt;</em></code></pre></div></div></section><section id="code-add-code"><h2><code>add</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ touch hello
 $ git add hello
 $ git status
 On branch master
@@ -154,7 +159,9 @@ Changes to be committed:
 
         new file:   hello</code></pre></div></div></section><section id="git-objects"><h2>git objects</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ find .git/objects/ -type f
 .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391</code></pre></div></div></section></section>
-<section><section id="git-commit"><h2>git commit</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="bash language-bash">$ git commit <em>[-m &lt;message&gt;]</em></code></pre></div></div></section><section id="code-commit-code"><h2><code>commit</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -m "Initial commit"
+<section><section id="git-commit"><h2>git commit</h2><div class="paragraph"><p>Commit all staged objects to local repository</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="bash language-bash">$ git commit <em>[-m &lt;message&gt;]</em></code></pre></div></div><aside class="notes">Creates tree object to staged objects<br />
+Creates commit object<br />
+Update refs</aside></section><section id="code-commit-code"><h2><code>commit</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -m "Initial commit"
 [master (root-commit) d400d55] Initial commit
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 hello</code></pre></div></div></section><section id="git-objects-2"><h2>git objects</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ find .git/objects -type f
@@ -168,7 +175,13 @@ $ git cat-file -t f9669
 tree
 $ git cat-file -t d400d
 commit</code></pre></div></div></section><section id="git-references"><h2>git references</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ cat .git/refs/heads/master
-d400d55d841364e0bdf479c5e172210954ae3d5c</code></pre></div></div></section></section>
+<strong>d400d55d841364e0bdf479c5e172210954ae3d5c</strong> <i class="conum" data-value="1"></i><b>(1)</b></code></pre></div></div>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>The hash of  the commit object</td></tr></table></div></section></section>
+<section id="typical-local-workflow"><h2>Typical local workflow</h2></section>
+<section id="skipping-code-git-add-code"><h2>Skipping <code>git add</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit --all -m "#yolo"</code></pre></div></div></section>
+<section id="undoing-commit"><h2>Undoing commit</h2></section>
+<section id="gitignore"><h2>.gitignore</h2></section>
+<section id="collaborting"><h2>Collaborting</h2></section>
 <section><section id="git-push"><h2>git push</h2></section><section id="code-push-code"><h2><code>push</code></h2></section></section>
 <section id="git-add-gotcha"><h2>git add gotcha</h2><div class="paragraph"><p>When modifying an added file, you&#8217;ll need to re-add to stage the latest changes otherwise they won&#8217;t make the commit.</p></div>
 <div class="paragraph"><p>Demonstrate git add stuff, demonstrate <code>git commit -am</code></p></div></section>
