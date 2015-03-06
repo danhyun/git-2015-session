@@ -80,7 +80,7 @@ Commit all staged objects to local repository
 
 [source,bash,subs="verbatim,quotes"]
 ----
-$ git commit _[-m <message>]_
+$ git commit [_-m <message>_]
 ----
 
 [NOTE.speaker]
@@ -106,6 +106,15 @@ $ find .git/objects -type f
 <1> Our `hello` file as a blob
 <2> Tree object containing fileset for commit
 <3> Commit object containing author and tree object
+
+=== tree object
+`git cat-file -p` allows us +
+to inspect git objects
+----
+$ git cat-file -p f966952d7e0715683ee935d201cd4ab22736c831
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    hello <1>
+----
+<1> File mode object type object hash
 
 === Differentiating git object types
 
