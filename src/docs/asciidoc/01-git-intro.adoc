@@ -1,0 +1,35 @@
+== What is Git?
+
+Cross platform, distributed +
+source control management system.
+
+=== Brief Background
+ 
+[.step]
+* Created in 2005 by Linus Torvalds
+* https://git.wiki.kernel.org/index.php/GitFaq#Why_the_.27Git.27_name.3F[Named after Linus Torvalds]
+* Used to maintain the https://github.com/torvalds/linux[Linux Kernel]
+
+=== Motivations for Git
+
+[horizontal]
+Performance:: _fast_, reliable file integrity
+Simplicity:: no separate admin binaries
+Flexibility:: supports multiple protocols, methods of contributions, etc.
+
+[NOTE.speaker]
+performance: +
+line endings windows vs *nix +
+* file corruption detection with checksums +
+simplicity - svnadmin anyone? +
+flexibility:: ssh, ftp, http, email patch, user config
+
+=== Git in action
+
+.As of 2015-03-03
+image::github-linux-kernel.PNG[]
+
+[NOTE.speaker]
+505,761 commits +
+408 releases +
+4,723 contributors +

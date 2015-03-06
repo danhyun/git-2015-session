@@ -1,0 +1,129 @@
+== Basic Git commands
+
+== Git config
+
+Used to set and get configuration properties
+
+[source,terminal]
+.Sample Truncated Config
+----
+$ git config --list
+user.name=Dan Hyun
+user.email=dan@hyunlabs.com
+----
+
+=== Config locations
+
+.Locations and corresponding flags
+|===
+| Level   | Config Location          | Git flag
+
+| Project | `${project}/.git/config` | `--local`
+| User    | `~/.gitconfig`           | `--global`
+| System  | `/etc/gitconfig`         | `--system`
+|===
+
+== Who am I?
+
+----
+$ git config --global user.email "dan@hyunlabs.com"
+$ git config --global user.name "Dan Hyun"
+----
+
+INFO: This information goes into your commits
+
+[NOTE.speaker]
+Before working with git, you need to configure username and email
+
+== git init
+
+Create a new Git repository
+
+----
+$ git init demo
+Initialized empty Git repository in /home/vagrant/demo/.git/
+----
+
+=== `init`
+[source,terminal,subs="verbatim,quotes"]
+----
+include::git-outputs/git-tree-init[]
+----
+<1> Project level config file
+<2> Current branch reference
+<3> Blob storage
+<4> Reference locations
+
+== git add
+
+Stages the given file(s) as is to the index
+
+[source,subs="verbatim,quotes"]
+----
+$ git add _<file or path>_
+----
+
+=== `add`
+----
+include::git-outputs/git-add[]
+----
+
+=== git objects
+----
+$ find .git/objects/ -type f
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+----
+
+== git commit
+
+Commit all staged objects to local repository
+
+[source,bash,subs="verbatim,quotes"]
+----
+$ git commit _[-m <message>]_
+----
+
+[NOTE.speaker]
+Creates tree object to staged objects +
+Creates commit object +
+Update refs
+
+=== `commit`
+----
+$ git commit -m "Initial commit"
+[master (root-commit) d400d55] Initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hello
+----
+
+=== git objects
+----
+$ find .git/objects -type f
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 <1>
+.git/objects/f9/66952d7e0715683ee935d201cd4ab22736c831 <2>
+.git/objects/d4/00d55d841364e0bdf479c5e172210954ae3d5c <3>
+----
+<1> Our `hello` file as a blob
+<2> Tree object containing fileset for commit
+<3> Commit object containing author and tree object
+
+=== Differentiating git object types
+
+Object types?
+
+----
+$ git cat-file -t e69de
+blob
+$ git cat-file -t f9669
+tree
+$ git cat-file -t d400d
+commit
+----
+
+=== git references
+[source,subs="verbatim,quotes"]
+----
+$ cat .git/refs/heads/master
+*d400d55d841364e0bdf479c5e172210954ae3d5c* <1>
+----
+<1> The hash of  the commit object

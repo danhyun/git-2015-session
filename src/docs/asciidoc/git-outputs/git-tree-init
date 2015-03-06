@@ -1,8 +1,8 @@
 .git
 ├── branches
-├── config
+├── *config* <1>
 ├── description
-├── *HEAD* <1>
+├── *HEAD* <2>
 ├── hooks
 │   ├── applypatch-msg.sample
 │   ├── commit-msg.sample
@@ -15,9 +15,9 @@
 │   └── update.sample
 ├── info
 │   └── exclude
-├── *objects* <2>
+├── *objects* <3>
 │   ├── info
 │   └── pack
-└── *refs* <3>
+└── *refs* <4>
     ├── heads
     └── tags

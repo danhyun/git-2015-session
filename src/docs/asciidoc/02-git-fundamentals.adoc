@@ -1,0 +1,71 @@
+== Fundamental concepts
+
+[.step]
+* Objects
+* References
+* State
+* Distributed Nature
+
+==  Objects
+
+* Every file is an object
+* Every commit is an object
+* These objects form a tree
+
+[NOTE.speaker]
+every file is a compressed binary object +
+each commit points to its parent +
+commit points to a set of objects +
+commits/object tree forms history
+
+== References
+
+* `HEAD` is a reference
+* Branches are references
+* Tags are references
+* Remotes are references
+
+[NOTE.speaker]
+References point to objects
+
+== State
+
+A given file can be in one of these four states:
+
+* Untracked
+* Tracked - not modified
+* Tracked - staged for commit
+* Committed
+
+[NOTE.speaker]
+Tracked - not modified and committed are the same but distinction helps in illustrating a flow 
+
+== Distributed
+
+* No central server or authority
+* Most actions performed locally
+* Eliminates issues (politics) around commit access
+
+[NOTE.speaker]
+Concept of central authority is social +
+Each user contains a complete working copy of the files under revision +
+Full commit history/logs +
+All branches +
+
+== Git vs CVS/SVN
+
+|===
+| Attribute | Git | CVS/SVN
+
+| Tracking changes
+>| Snapshot of all files
+>| Per file
+
+| History storage
+>| Compressed binary objects with SHA1 checksum
+>| Diff per file in .cvs/.svn directories
+
+| Source of truth
+>| Distributed
+>| Centralized
+|===

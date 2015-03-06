@@ -12,190 +12,25 @@ tools
 migration
 ////
 
-== What is Git?
+include::01-git-intro.adoc[]
 
-Cross platform, distributed +
-source control management system.
+include::02-git-fundamentals.adoc[]
 
-=== Brief Background
- 
-[.step]
-* Created in 2005 by Linus Torvalds
-* https://git.wiki.kernel.org/index.php/GitFaq#Why_the_.27Git.27_name.3F[Named after Linus Torvalds]
-* Used to maintain the https://github.com/torvalds/linux[Linux Kernel]
+include::03-git-basic-commands.adoc[]
 
-=== Motivations for Git
+== Typical local workflow
 
-[horizontal]
-Performance:: _fast_, reliable file integrity
-Simplicity:: no separate admin binaries
-Flexibility:: supports multiple protocols, methods of contributions, etc.
-
-[NOTE.speaker]
-performance: +
-line endings windows vs *nix +
-* file corruption detection with checksums +
-simplicity - svnadmin anyone? +
-flexibility:: ssh, ftp, http, email patch, user config
-
-=== Git in action
-
-.As of 2015-03-03
-image::github-linux-kernel.PNG[]
-
-[NOTE.speaker]
-505,761 commits +
-408 releases +
-4,723 contributors +
-
-== Fundamental concepts
-
-[.step]
-* Objects
-* References
-* State
-* Distributed Nature
-
-==  Objects
-
-* Every file is an object
-* Every commit is an object
-* These objects form a tree
-
-[NOTE.speaker]
-every file is a compressed binary object +
-each commit points to its parent +
-commit points to a set of objects +
-commits/object tree forms history
-
-== References
-
-* `HEAD` is a reference
-* Branches are references
-* Tags are references
-* Remotes are references
-
-[NOTE.speaker]
-References point to objects
-
-== State
-
-A given file can be in one of these four states:
-
-* Untracked
-* Tracked - not modified
-* Tracked - staged for commit
-* Committed
-
-[NOTE.speaker]
-Tracked - not modified and committed are the same but distinction helps in illustrating a flow 
-
-== Distributed
-
-* No central server or authority
-* Most actions performed locally
-
-[NOTE.speaker]
-Concept of central authority is social +
-Each user contains a complete working copy of the files under revision +
-Full commit history/logs +
-All branches +
-
-== Git commands
-
-== Git config
-
-* project
-* user
-* system
-
-[NOTE.speaker]
-Before working with git, you need to configure username and email
-
-=== Setup identity
+== Skipping `git add`
 
 ----
-$ git config --global user.email "dan@hyunlabs.com"
-$ git config --global user.name "Dan Hyun"
+$ git commit --all -m "#yolo"
 ----
 
-INFO: This information goes into your commits
+== Undoing commit
 
-== git init
-----
-$ git init demo
-Initialized empty Git repository in /home/vagrant/demo/.git/
-----
+== .gitignore
 
-=== `init`
-[source,terminal,subs="verbatim,quotes"]
-----
-include::git-outputs/git-tree-init[]
-----
-<1> Current branch reference
-<2> Blob storage
-<3> Reference locations
-
-== git add
-[source,subs="verbatim,quotes"]
-----
-$ git add _<file or path>_
-----
-
-=== `add`
-----
-include::git-outputs/git-add[]
-----
-
-=== git objects
-----
-$ find .git/objects/ -type f
-.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391
-----
-
-== git commit
-[source,bash,subs="verbatim,quotes"]
-----
-$ git commit _[-m <message>]_
-----
-
-=== `commit`
-----
-$ git commit -m "Initial commit"
-[master (root-commit) d400d55] Initial commit
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 hello
-----
-
-=== git objects
-----
-$ find .git/objects -type f
-.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 <1>
-.git/objects/f9/66952d7e0715683ee935d201cd4ab22736c831 <2>
-.git/objects/d4/00d55d841364e0bdf479c5e172210954ae3d5c <3>
-----
-<1> Our `hello` file as a blob
-<2> Tree object containing fileset for commit
-<3> Commit object containing author and tree object
-
-=== Differentiating git object types
-
-Object types?
-
-----
-$ git cat-file -t e69de
-blob
-$ git cat-file -t f9669
-tree
-$ git cat-file -t d400d
-commit
-----
-
-=== git references
-----
-$ cat .git/refs/heads/master
-d400d55d841364e0bdf479c5e172210954ae3d5c
-----
+== Collaborting
 
 == git push
 
