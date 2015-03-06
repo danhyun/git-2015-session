@@ -159,7 +159,7 @@ Changes to be committed:
 
         new file:   hello</code></pre></div></div></section><section id="git-objects"><h2>git objects</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ find .git/objects/ -type f
 .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391</code></pre></div></div></section></section>
-<section><section id="git-commit"><h2>git commit</h2><div class="paragraph"><p>Commit all staged objects to local repository</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="bash language-bash">$ git commit <em>[-m &lt;message&gt;]</em></code></pre></div></div><aside class="notes">Creates tree object to staged objects<br />
+<section><section id="git-commit"><h2>git commit</h2><div class="paragraph"><p>Commit all staged objects to local repository</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="bash language-bash">$ git commit [<em>-m &lt;message&gt;</em>]</code></pre></div></div><aside class="notes">Creates tree object to staged objects<br />
 Creates commit object<br />
 Update refs</aside></section><section id="code-commit-code"><h2><code>commit</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -m "Initial commit"
 [master (root-commit) d400d55] Initial commit
@@ -168,7 +168,11 @@ Update refs</aside></section><section id="code-commit-code"><h2><code>commit</co
 .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 <i class="conum" data-value="1"></i><b>(1)</b>
 .git/objects/f9/66952d7e0715683ee935d201cd4ab22736c831 <i class="conum" data-value="2"></i><b>(2)</b>
 .git/objects/d4/00d55d841364e0bdf479c5e172210954ae3d5c <i class="conum" data-value="3"></i><b>(3)</b></code></pre></div></div>
-<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Our <code>hello</code> file as a blob</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Tree object containing fileset for commit</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Commit object containing author and tree object</td></tr></table></div></section><section id="differentiating-git-object-types"><h2>Differentiating git object types</h2><div class="paragraph"><p>Object types?</p></div>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Our <code>hello</code> file as a blob</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Tree object containing fileset for commit</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Commit object containing author and tree object</td></tr></table></div></section><section id="tree-object"><h2>tree object</h2><div class="paragraph"><p><code>git cat-file -p</code> allows us<br />
+to inspect git objects</p></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git cat-file -p f966952d7e0715683ee935d201cd4ab22736c831
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    hello <i class="conum" data-value="1"></i><b>(1)</b></code></pre></div></div>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>File mode object type object hash</td></tr></table></div></section><section id="differentiating-git-object-types"><h2>Differentiating git object types</h2><div class="paragraph"><p>Object types?</p></div>
 <div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git cat-file -t e69de
 blob
 $ git cat-file -t f9669
