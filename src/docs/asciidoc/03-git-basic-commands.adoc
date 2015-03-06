@@ -129,7 +129,17 @@ $ git cat-file -t d400d
 commit
 ----
 
+=== HEAD master
+
+[source]
+----
+$ find .git/refs/ -type f
+.git/refs/heads/master <1>
+----
+<1> New reference `master` added
+
 === git references
+
 [source,subs="verbatim,quotes"]
 ----
 $ cat .git/refs/heads/master
