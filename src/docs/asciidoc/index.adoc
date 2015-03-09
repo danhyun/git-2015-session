@@ -12,6 +12,16 @@ tools
 migration
 ////
 
+== Topics
+
+* Introduction
+* Git Fundamentals
+* Git Commands
+* Everyday Git
+* Best Practices
+* Resources
+
+
 include::01-git-intro.adoc[]
 
 include::02-git-fundamentals.adoc[]
@@ -63,6 +73,14 @@ TIP: Use command line initially to get a feel for the rhythm/terminology
 * Use commandline exclusively in the beginning
 * Adhere to your team's work flow
 
+=== git commit
+
+make good commit message
+
+use present tense and one line summary < 50 chars
+
+add paragraph with more details
+
 == Two workflows
 
 * Develop -> Staging -> Master
@@ -74,5 +92,10 @@ http://scottchacon.com/2011/08/31/github-flow.html[Git Flow]:: Blog article by S
 http://git-scm.com/book/en/v2[Pro Git]:: Free ebook by Scott Chacon (Github) and Ben Straub
 http://gitimmersion.com/[Git Immersion]:: Series of labs to learn git fundamentals
 https://www.youtube.com/watch?v=4XpnKHJAok8[Linus Torvalds on git]:: Video - Linus talks about git
+
+=== Resources
+
+http://www.ndpsoftware.com/git-cheatsheet.html[Interactive git cheat sheet]
+http://nvie.com/posts/a-successful-git-branching-model/[Suggested git branching model]
 
 == Questions?
