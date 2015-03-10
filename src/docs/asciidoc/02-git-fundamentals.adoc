@@ -18,6 +18,10 @@ each commit points to its parent +
 commit points to a set of objects +
 commits/object tree forms history
 
+=== Objects
+
+image::git_objects.svg[]
+
 == References
 
 * `HEAD` is a reference

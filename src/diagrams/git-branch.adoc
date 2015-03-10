@@ -1,0 +1,11 @@
+== Git Objects
+
+[graphviz, "git_objects", "svg"]
+....
+digraph git_objects {
+     commit -> tree;
+     tree -> file1;
+     tree -> file2;
+     tree -> file3;
+}
+....

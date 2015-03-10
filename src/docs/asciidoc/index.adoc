@@ -15,14 +15,16 @@ migration
 == Topics
 
 * Introduction
+* Git Now
 * Git Fundamentals
 * Git Commands
 * Everyday Git
 * Best Practices
 * Resources
 
-
 include::01-git-intro.adoc[]
+
+include::git-now.adoc[]
 
 include::02-git-fundamentals.adoc[]
 

@@ -1,0 +1,32 @@
+== Git Now
+
+Create a new git repository
+----
+$ git init demo
+Initialized empty Git repository in /home/vagrant/demo/.git/
+----
+
+=== Add a file
+
+----
+$ echo 'public class Hello { public static void main(String[] args) { System.out.println("Hello, World!"); } }' > Hello.java
+$ javac Hello.java
+$ java Hello
+Hello, World!
+$ git add Hello.java
+----
+
+=== Save it forever
+
+----
+$ git commit -m "Add important Hello.java file"
+[master (root-commit) bf94b34] Add important Hello.java file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Hello.java
+----
+
+== Congratulations!
+
+Now you know git!
+
+image::yay.gif[]
