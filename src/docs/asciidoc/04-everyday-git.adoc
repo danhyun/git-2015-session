@@ -17,7 +17,7 @@ $ git commit -m "#yolo"
 create mode 100644 Hello.class
 ----
 
-image::no.gif[]
+image::NO.gif[]
 
 == Removing files
 
