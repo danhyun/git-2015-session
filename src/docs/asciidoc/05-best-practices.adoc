@@ -27,3 +27,7 @@ Update DAO to accept additional param
 
 * Develop -> Staging -> Master
 * Commit to Master
+
+== Multibranch process
+
+image::multi-branch-process.PNG[]

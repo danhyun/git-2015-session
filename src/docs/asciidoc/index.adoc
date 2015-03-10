@@ -39,11 +39,11 @@ include::05-best-practices.adoc[]
 http://scottchacon.com/2011/08/31/github-flow.html[Git Flow]:: Blog article by Scott Chacon about a workflow
 http://git-scm.com/book/en/v2[Pro Git]:: Free ebook by Scott Chacon (Github) and Ben Straub
 http://gitimmersion.com/[Git Immersion]:: Series of labs to learn git fundamentals
+
+== Resources continued
+
 https://www.youtube.com/watch?v=4XpnKHJAok8[Linus Torvalds on git]:: Video - Linus talks about git
-
-=== Resources
-
-http://www.ndpsoftware.com/git-cheatsheet.html[Interactive git cheat sheet]
-http://nvie.com/posts/a-successful-git-branching-model/[Suggested git branching model]
+http://www.ndpsoftware.com/git-cheatsheet.html[Interactive git cheat sheet]:: Interactive git command cheat sheet
+http://nvie.com/posts/a-successful-git-branching-model/[Suggested git branching model]:: A popular git branching model
 
 == Questions?
