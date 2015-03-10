@@ -245,15 +245,78 @@ Fast-forward
  create mode 100644 README</code></pre></div></div></section><section id="merged"><h2>Merged</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git branch -v
 * master       1f1f2ae README
   neato-branch 1f1f2ae README</code></pre></div></div>
-<div class="paragraph"><p>image::git-branch-merge.PNG[width=500]]</p></div></section></section>
-<section id="collaborating"><h2>Collaborating</h2></section>
-<section><section id="git-push"><h2>git push</h2></section><section id="code-push-code"><h2><code>push</code></h2></section></section>
-<section id="git-add-gotcha"><h2>git add gotcha</h2><div class="paragraph"><p>When modifying an added file, you&#8217;ll need to re-add to stage the latest changes otherwise they won&#8217;t make the commit.</p></div>
-<div class="paragraph"><p>Demonstrate git add stuff, demonstrate <code>git commit -am</code></p></div></section>
-<section id="reverting-work"><h2>reverting work</h2><div class="paragraph"><p>show how to reset files to previous version</p></div></section>
-<section id="git-stash"><h2>git stash</h2><div class="paragraph"><p>show how stashing works</p></div></section>
-<section id="conflicts"><h2>conflicts</h2><div class="paragraph"><p>show how conflicts work</p></div>
-<div class="paragraph"><p>introduce merge, fetch, pull, remote update rebasing</p></div></section>
+<div class="imageblock" style=""><div class="content"><img src="./images/git-branch-merge.PNG" alt="git branch merge" width="500" /></div></div></section></section>
+<section id="collaboration"><h2>Collaboration</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git remote add origin &lt;URL&gt; <i class="conum" data-value="1"></i><b>(1)</b></code></pre></div></div>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Any valid URL</td></tr></table></div></section>
+<section id="git-push"><h2>git push</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git push origin master
+Counting objects: 9, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (9/9), 1.09 KiB | 0 bytes/s, done.
+Total 9 (delta 0), reused 0 (delta 0)
+To ../demo-remote
+ * [new branch]      master -&gt; master</code></pre></div></div></section>
+<section id="updating-from-remotes"><h2>Updating from remotes</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git fetch
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+   1f1f2ae..ecf757d  master     -&gt; origin/master</code></pre></div></div></section>
+<section id="merge-from-origin-master"><h2>Merge from origin/master</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git merge origin/master
+Updating 1f1f2ae..ecf757d
+Fast-forward
+ Hello.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)</code></pre></div></div></section>
+<section id="all-in-one-go"><h2>All in one go</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git pull origin master
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+ * branch            master     -&gt; FETCH_HEAD
+   1f1f2ae..ecf757d  master     -&gt; origin/master
+Updating 1f1f2ae..ecf757d
+Fast-forward
+ Hello.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)</code></pre></div></div></section>
+<section id="git-push-2"><h2>Git push</h2><div class="paragraph"><p>What happens when<br />
+code changes?</p></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git push origin master
+To ../demo-remote
+ ! [rejected]        master -&gt; master (fetch first)
+error: failed to push some refs to '../demo-remote'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre></div></div></section>
+<section id="conflict"><h2>Conflict</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git pull origin master
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+ * branch            master     -&gt; FETCH_HEAD
+   ecf757d..fd10976  master     -&gt; origin/master
+Auto-merging Hello.java
+CONFLICT (content): Merge conflict in Hello.java
+Automatic merge failed; fix conflicts and then commit the result.</code></pre></div></div></section>
+<section><section id="resolving-conflict"><h2>Resolving Conflict</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ cat Hello.java
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+public class Hello { public static void main(String[] args) { System.out.println("Hallo, Welt again!"); } }
+=======
+public class Hello { public static void main(String[] args) { System.out.println("Hello, World again!"); } }
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; fd10976633568cd872f2d1aa64d97429957d73bb</code></pre></div></div></section><section id="commit"><h2>Commit</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -am "resolve conflict"
+[master b0ae7d5] resolve conflict</code></pre></div></div></section><section id="push"><h2>Push</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git push origin master
+Counting objects: 8, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 514 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To ../demo-remote
+   fd10976..b0ae7d5  master -&gt; master</code></pre></div></div></section></section>
+<section id="final-product"><h2>Final product</h2><div class="imageblock" style=""><div class="content"><img src="./images/git-resolve-conflict.PNG" alt="git resolve conflict" width="600" /></div></div></section>
 <section><section id="best-practices"><h2>Best practices</h2><div class="admonitionblock tip"><table><tr><td class="icon"></td></tr></table><i class="icon-tip" title="Tip"></i>Use command line initially to get a feel for the rhythm/terminology</div><div class="ulist"><ul><li><p>Use commandline exclusively in the beginning</p></li><li><p>Adhere to your team&#8217;s work flow</p></li></ul></div></section><section id="git-commit-2"><h2>git commit</h2><div class="paragraph"><p>make good commit message</p></div>
 <div class="paragraph"><p>use present tense and one line summary &lt; 50 chars</p></div>
 <div class="paragraph"><p>add paragraph with more details</p></div></section></section>
