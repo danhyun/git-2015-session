@@ -17,7 +17,7 @@ $ git commit -m "#yolo"
 create mode 100644 Hello.class
 ----
 
-image::NO.gif[]
+image::NO.gif[width=400]
 
 == Removing files
 
@@ -56,7 +56,72 @@ target/
 build/
 ----
 
-== Collaborting
+== Branching
+
+----
+$ git branch neato-feature
+$ git checkout neato-branch
+Switched to branch 'neato-branch'
+----
+
+=== `git branch`
+
+----
+$ git branch -v
+  master       c36a69a Remove generated files
+* neato-branch c36a69a Remove generated files
+----
+
+== Working on a branch
+
+----
+$ echo "Hello is very important" > README
+$ git add README
+$ git commit -m README
+[neato-branch 1f1f2ae] README
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README
+----
+
+=== Git branch
+----
+$ git branch -v
+  master       c36a69a Remove generated files
+* neato-branch 1f1f2ae README
+----
+
+=== Gitk
+----
+$ gitk
+----
+
+image::git-branch.PNG[width=500]
+
+== Merging
+ 
+----
+$ git checkout master
+Switched to branch 'master'
+
+$ git merge neato-branch
+Updating c36a69a..1f1f2ae
+Fast-forward
+ README | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README
+----
+
+=== Merged
+
+----
+$ git branch -v
+* master       1f1f2ae README
+  neato-branch 1f1f2ae README
+----
+
+image::git-branch-merge.PNG[width=500]]
+
+== Collaborating
 
 == git push
 
