@@ -32,25 +32,7 @@ include::03-git-basic-commands.adoc[]
 
 include::04-everyday-git.adoc[]
 
-== Best practices
-
-TIP: Use command line initially to get a feel for the rhythm/terminology
-
-* Use commandline exclusively in the beginning
-* Adhere to your team's work flow
-
-=== git commit
-
-make good commit message
-
-use present tense and one line summary < 50 chars
-
-add paragraph with more details
-
-== Two workflows
-
-* Develop -> Staging -> Master
-* Commit to master
+include::05-best-practices.adoc[]
 
 == Resources
 

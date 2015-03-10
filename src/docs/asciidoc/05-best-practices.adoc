@@ -1,0 +1,29 @@
+== Best practices
+
+[.step]
+
+* Use commandline exclusively in the beginning
+* Adhere to your team's work flow
+* Branch from your team's canonical branch
+
+== Commit messages
+
+* Use consistent messaging
+* Use present tense and one line summary < 50 chars
+* Add paragraph with more details if needed
+
+=== Example
+
+Reads like a log file:
+
+----
+Fixes duplicate entry issue
+
+Update schema to use primary key
+Update DAO to accept additional param
+----
+
+== Workflows
+
+* Develop -> Staging -> Master
+* Commit to Master
