@@ -115,14 +115,12 @@ each commit points to its parent<br />
 commit points to a set of objects<br />
 commits/object tree forms history</aside></section><section id="objects-2"><h2>Objects</h2><div class="imageblock" style=""><div class="content"><img src="./images/git_objects.svg" alt="git objects" /></div></div></section></section>
 <section><section id="references"><h2>References</h2><div class="ulist"><ul><li><p><code>HEAD</code> is a reference</p></li><li><p>Branches are references</p></li><li><p>Tags are references</p></li><li><p>Remotes are references</p></li></ul></div><aside class="notes">References point to objects</aside></section><section id="references-2"><h2>References</h2><div class="imageblock" style=""><div class="content"><img src="./images/git_reference.svg" alt="git reference" /></div></div></section></section>
-<section id="state"><h2>State</h2><div class="paragraph"><p>A given file can be in one of these four states:</p></div>
-<div class="ulist"><ul><li><p>Untracked</p></li><li><p>Tracked - not modified</p></li><li><p>Tracked - staged for commit</p></li><li><p>Committed</p></li></ul></div>
-<aside class="notes">Tracked - not modified and committed are the same but distinction helps in illustrating a flow</aside></section>
-<section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li><li><p>Eliminates issues (politics) around commit access</p></li></ul></div>
-<aside class="notes">Concept of central authority is social<br />
+<section><section id="state"><h2>State</h2><div class="paragraph"><p>A given file can be in one of these four states:</p></div><div class="ulist"><ul><li><p>Untracked</p></li><li><p>Tracked - not modified</p></li><li><p>Tracked - staged for commit</p></li><li><p>Committed</p></li></ul></div></section><section id="state-2"><h2>State</h2><div class="imageblock" style=""><div class="content"><img src="./images/git-file-state.png" alt="git file state" /></div></div>
+<aside class="notes">Tracked - not modified and committed are the same but distinction helps in illustrating a flow</aside></section></section>
+<section><section id="distributed"><h2>Distributed</h2><div class="ulist"><ul><li><p>No central server or authority</p></li><li><p>Most actions performed locally</p></li><li><p>Eliminates issues (politics) around commit access</p></li></ul></div><aside class="notes">Concept of central authority is social<br />
 Each user contains a complete working copy of the files under revision<br />
 Full commit history/logs<br />
-All branches<br /></aside></section>
+All branches<br /></aside></section><section id="distribution"><h2>Distribution</h2><div class="imageblock" style=""><div class="content"><img src="./images/distribution.svg" alt="distribution" /></div></div></section></section>
 <section id="git-vs-cvs-svn"><h2>Git vs CVS/SVN</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribute</th><th class="tableblock halign-left valign-top">Git</th><th class="tableblock halign-left valign-top">CVS/SVN</th></tr></thead><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Tracking changes</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Snapshot of all files</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Per file</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">History storage</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Compressed binary objects with SHA1 checksum</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Diff per file in .cvs/.svn directories</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Source of truth</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Distributed</p></td><td class="tableblock halign-right valign-top"><p class="tableblock">Centralized</p></td></tr></tbody></table></section>
 <section id="basic-git-commands"><h2>Basic Git commands</h2></section>
 <section><section id="git-config"><h2>Git config</h2><div class="paragraph"><p>Used to set and get configuration properties</p></div><div class="listingblock"><div class="title">Sample Truncated Config</div><div class="content"><pre class="CodeRay"><code class="terminal language-terminal">$ git config --list
@@ -193,11 +191,35 @@ commit</code></pre></div></div></section><section id="head-master"><h2>HEAD mast
 <div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>New reference <code>master</code> added</td></tr></table></div></section><section id="git-references"><h2>git references</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ cat .git/refs/heads/master
 <strong>d400d55d841364e0bdf479c5e172210954ae3d5c</strong> <i class="conum" data-value="1"></i><b>(1)</b></code></pre></div></div>
 <div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>The hash of  the commit object</td></tr></table></div></section></section>
-<section id="review"><h2>Review</h2><div class="imageblock" style=""><div class="content"><img src="./images/git-file-state.png" alt="git file state" /></div><div class="title">Figure 2. Git file state</div></div></section>
-<section id="typical-local-workflow"><h2>Typical local workflow</h2></section>
-<section id="skipping-code-git-add-code"><h2>Skipping <code>git add</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit --all -m "#yolo"</code></pre></div></div></section>
-<section id="undoing-commit"><h2>Undoing commit</h2></section>
-<section id="gitignore"><h2>.gitignore</h2></section>
+<section id="i-know-kung-fu"><h2>I know Kung-fu</h2><div class="imageblock" style=""><div class="content"><img src="./images/kung_fu.jpg" alt="kung fu" /></div></div></section>
+<section id="everyday-git"><h2>Everyday git</h2></section>
+<section id="code-git-add-everything-code"><h2><code>git add everything</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git add .
+$ git commit -m "#yolo"
+[master (root-commit) e96454d] #yolo
+ 2 files changed, 1 insertion(+)
+ create mode 100644 <strong>Hello.class</strong>
+ create mode 100644 Hello.java</code></pre></div></div></section>
+<section id="no"><h2>NO</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>create mode 100644 Hello.class</code></pre></div></div>
+<div class="imageblock" style=""><div class="content"><img src="./images/no.gif" alt="no" /></div></div></section>
+<section><section id="removing-files"><h2>Removing files</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git rm Hello.class
+rm 'Hello.class'
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        deleted:    Hello.class</code></pre></div></div></section><section id="removing-files-2"><h2>Removing Files</h2><div class="paragraph"><p>Don&#8217;t forget to commit</p></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git commit -m "Remove generated files"
+[master c36a69a] Remove generated files
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 Hello.class</code></pre></div></div></section></section>
+<section id="gitignore"><h2>.gitignore</h2><div class="paragraph"><p><code>.gitignore</code> lives at the root of the repository</p></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code># ignore generated files
+*.class
+# ignore maven output
+target/
+# ignore gradle output
+build/</code></pre></div></div></section>
 <section id="collaborting"><h2>Collaborting</h2></section>
 <section><section id="git-push"><h2>git push</h2></section><section id="code-push-code"><h2><code>push</code></h2></section></section>
 <section id="git-add-gotcha"><h2>git add gotcha</h2><div class="paragraph"><p>When modifying an added file, you&#8217;ll need to re-add to stage the latest changes otherwise they won&#8217;t make the commit.</p></div>
