@@ -200,7 +200,7 @@ $ git commit -m "#yolo"
  create mode 100644 <strong>Hello.class</strong>
  create mode 100644 Hello.java</code></pre></div></div></section>
 <section id="no"><h2>NO</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>create mode 100644 Hello.class</code></pre></div></div>
-<div class="imageblock" style=""><div class="content"><img src="./images/NO.gif" alt="NO" /></div></div></section>
+<div class="imageblock" style=""><div class="content"><img src="./images/NO.gif" alt="NO" width="400" /></div></div></section>
 <section><section id="removing-files"><h2>Removing files</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git rm Hello.class
 rm 'Hello.class'
 $ git status
@@ -220,7 +220,33 @@ Changes to be committed:
 target/
 # ignore gradle output
 build/</code></pre></div></div></section>
-<section id="collaborting"><h2>Collaborting</h2></section>
+<section><section id="branching"><h2>Branching</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git branch neato-feature
+$ git checkout neato-branch
+Switched to branch 'neato-branch'</code></pre></div></div></section><section id="code-git-branch-code"><h2><code>git branch</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git branch -v
+  master       c36a69a Remove generated files
+* neato-branch c36a69a Remove generated files</code></pre></div></div></section></section>
+<section><section id="working-on-a-branch"><h2>Working on a branch</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ echo "Hello is very important" &gt; README
+$ git add README
+$ git commit -m README
+[neato-branch 1f1f2ae] README
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README</code></pre></div></div></section><section id="git-branch"><h2>Git branch</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git branch -v
+  master       c36a69a Remove generated files
+* neato-branch 1f1f2ae README</code></pre></div></div></section><section id="gitk"><h2>Gitk</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ gitk</code></pre></div></div>
+<div class="imageblock" style=""><div class="content"><img src="./images/git-branch.PNG" alt="git branch" width="500" /></div></div></section></section>
+<section><section id="merging"><h2>Merging</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git checkout master
+Switched to branch 'master'
+
+$ git merge neato-branch
+Updating c36a69a..1f1f2ae
+Fast-forward
+ README | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README</code></pre></div></div></section><section id="merged"><h2>Merged</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ git branch -v
+* master       1f1f2ae README
+  neato-branch 1f1f2ae README</code></pre></div></div>
+<div class="paragraph"><p>image::git-branch-merge.PNG[width=500]]</p></div></section></section>
+<section id="collaborating"><h2>Collaborating</h2></section>
 <section><section id="git-push"><h2>git push</h2></section><section id="code-push-code"><h2><code>push</code></h2></section></section>
 <section id="git-add-gotcha"><h2>git add gotcha</h2><div class="paragraph"><p>When modifying an added file, you&#8217;ll need to re-add to stage the latest changes otherwise they won&#8217;t make the commit.</p></div>
 <div class="paragraph"><p>Demonstrate git add stuff, demonstrate <code>git commit -am</code></p></div></section>
