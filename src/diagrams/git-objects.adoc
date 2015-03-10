@@ -9,3 +9,15 @@ digraph git_objects {
      tree -> file3;
 }
 ....
+
+[graphviz, "git_reference", "svg"]
+....
+digraph git_objects {
+     reference[shape=box];
+     reference -> commit;
+     commit -> tree;
+     tree -> file1;
+     tree -> file2;
+     tree -> file3;
+}
+....

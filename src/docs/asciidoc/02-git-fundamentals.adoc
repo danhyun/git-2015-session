@@ -32,6 +32,10 @@ image::git_objects.svg[]
 [NOTE.speaker]
 References point to objects
 
+=== References
+
+image::git_reference.svg[]
+
 == State
 
 A given file can be in one of these four states:
