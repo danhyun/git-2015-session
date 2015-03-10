@@ -46,4 +46,8 @@ https://www.youtube.com/watch?v=4XpnKHJAok8[Linus Torvalds on git]:: Video - Lin
 http://www.ndpsoftware.com/git-cheatsheet.html[Interactive git cheat sheet]:: Interactive git command cheat sheet
 http://nvie.com/posts/a-successful-git-branching-model/[Suggested git branching model]:: A popular git branching model
 
+== Resources continued
+
+https://confluence.iaccap.com:8443/display/VICINIO/Git+Process+and+Workflow[Vicinio's git process]
+
 == Questions?

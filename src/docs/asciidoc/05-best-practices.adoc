@@ -23,11 +23,73 @@ Update schema to use primary key
 Update DAO to accept additional param
 ----
 
+== Use ssh
+
+----
+$ git clone https://chucknorris.com/roundhouse.git
+Cloning into 'roundhouse'...
+Password for 'https://chucknorris.com':
+----
+
+== LAME
+
+image::lame.gif[]
+
+== Ssh setup
+
+* Generate an ssh key pair
+* Add public key to central server
+* Enjoy not typing passwords
+
+=== Generate ssh key
+
+----
+$ ssh-keygen -t rsa -C "dan@hyunlabs.com"
+----
+
+=== Upload public key
+
+image::stash-key-upload.png[]
+
+=== Setup ssh config
+
+.~/.ssh/config
+----
+Host *
+        PreferredAuthentications publickey,keyboard-interactive
+        ServerAliveInterval 120
+        ServerAliveCountMax 30
+        IdentityFile ~/.ssh/id_rsa
+Host stash
+        User git
+        Hostname chucknorris.com
+        Port 7999
+----
+
+=== Enjoy
+
+----
+$ git clone stash:/roundhouse.git
+----
+
 == Workflows
 
 * Develop -> Staging -> Master
 * Commit to Master
 
 == Multibranch process
+
+* Maintain two canonical branches (master, develop)
+* Master represents what is on production (always "deployable")
+* Develop is coordination branch
+
+=== Multibranch process
+
+* Branch from develop
+* Do some work
+* Merge from origin/develop if updated
+* Submit Pull Request*
+
+=== Multibranch process
 
 image::multi-branch-process.PNG[]

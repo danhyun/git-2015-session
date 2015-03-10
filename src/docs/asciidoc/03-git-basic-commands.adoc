@@ -1,4 +1,4 @@
-== Basic Git commands
+== Git commands
 
 == Git config
 
