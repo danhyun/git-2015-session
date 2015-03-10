@@ -327,7 +327,26 @@ Update DAO to accept additional param</code></pre></div></div></section></sectio
 Cloning into 'roundhouse'...
 Password for 'https://chucknorris.com':</code></pre></div></div></section>
 <section id="lame"><h2>LAME</h2><div class="imageblock" style=""><div class="content"><img src="./images/lame.gif" alt="lame" /></div></div></section>
-<section><section id="ssh-setup"><h2>Ssh setup</h2><div class="ulist"><ul><li><p>Generate an ssh key pair</p></li><li><p>Add public key to central server</p></li><li><p>Enjoy not typing passwords</p></li></ul></div></section><section id="generate-ssh-key"><h2>Generate ssh key</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ ssh-keygen -t rsa -C "dan@hyunlabs.com"</code></pre></div></div></section><section id="upload-public-key"><h2>Upload public key</h2><div class="imageblock" style=""><div class="content"><img src="./images/stash-key-upload.png" alt="stash key upload" /></div></div></section><section id="setup-ssh-config"><h2>Setup ssh config</h2><div class="listingblock"><div class="title">~/.ssh/config</div><div class="content"><pre class="CodeRay"><code>Host *
+<section><section id="ssh-setup"><h2>Ssh setup</h2><div class="ulist"><ul><li><p>Generate an ssh key pair</p></li><li><p>Add public key to central server</p></li><li><p>Enjoy not typing passwords</p></li></ul></div></section><section id="generate-ssh-key"><h2>Generate ssh key</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>$ ssh-keygen -t rsa -C "dan@hyunlabs.com"</code></pre></div></div></section><section id="ssh-keygen-output"><h2>ssh-keygen output</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/vagrant/.ssh/id_rsa.
+Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub.
+The key fingerprint is:
+64:59:65:dc:ad:81:85:26:9e:ad:dd:d7:7a:21:75:e9 dan@hyunlabs.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|          .oo=.. |
+|         o..= o .|
+|        +. =   o.|
+|       o  o . .o.|
+|        S  o .o o|
+|          . ...Eo|
+|              .o.|
+|              . .|
+|               . |
++-----------------+</code></pre></div></div></section><section id="upload-public-key"><h2>Upload public key</h2><div class="imageblock" style=""><div class="content"><img src="./images/stash-key-upload.png" alt="stash key upload" /></div></div></section><section id="setup-ssh-config"><h2>Setup ssh config</h2><div class="listingblock"><div class="title">~/.ssh/config</div><div class="content"><pre class="CodeRay"><code>Host *
         PreferredAuthentications publickey,keyboard-interactive
         ServerAliveInterval 120
         ServerAliveCountMax 30
