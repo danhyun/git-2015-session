@@ -1,0 +1,50 @@
+== Distribution
+
+[graphviz, "distribution", "svg"]
+....
+digraph git_objects {
+  subgraph cluster1 {
+    a_reference[label="reference",shape=box];
+    a_reference -> a_commit;
+    a_commit[label="commit"];
+    a_commit -> a_tree;
+    a_tree[label="tree"];
+    a_tree -> a_file1;
+    a_tree -> a_file2;
+    a_tree -> a_file3;
+    a_file1[label="file 1"];
+    a_file2[label="file 2"];
+    a_file3[label="file 3"];
+    label = "Alice"
+  }
+  subgraph cluster2 {
+    b_reference[label="reference",shape=box];
+    b_reference -> b_commit;
+    b_commit[label="commit"];
+    b_commit -> b_tree;
+    b_tree[label="tree"];
+    b_tree -> b_file1;
+    b_tree -> b_file2;
+    b_tree -> b_file3;
+    b_file1[label="file 1"];
+    b_file2[label="file 2"];
+    b_file3[label="file 3"];
+    label = "Bob"
+  }
+  subgraph cluster3 {
+    c_reference[label="reference",shape=box];
+    c_reference -> c_commit;
+    c_commit[label="commit"];
+    c_commit -> c_tree;
+    c_tree[label="tree"];
+    c_tree -> c_file1;
+    c_tree -> c_file2;
+    c_tree -> c_file3;
+    c_file1[label="file 1"];
+    c_file2[label="file 2"];
+    c_file3[label="file 3"];
+    label = "Carol"
+  }
+
+}
+....

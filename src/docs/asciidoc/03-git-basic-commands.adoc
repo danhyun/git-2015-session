@@ -146,8 +146,3 @@ $ cat .git/refs/heads/master
 *d400d55d841364e0bdf479c5e172210954ae3d5c* <1>
 ----
 <1> The hash of  the commit object
-
-== Review
-
-.Git file state
-image::git-file-state.png[]

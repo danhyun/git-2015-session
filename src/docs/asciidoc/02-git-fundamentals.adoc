@@ -45,6 +45,10 @@ A given file can be in one of these four states:
 * Tracked - staged for commit
 * Committed
 
+=== State
+
+image::git-file-state.png[]
+
 [NOTE.speaker]
 Tracked - not modified and committed are the same but distinction helps in illustrating a flow 
 
@@ -59,6 +63,10 @@ Concept of central authority is social +
 Each user contains a complete working copy of the files under revision +
 Full commit history/logs +
 All branches +
+
+=== Distribution
+
+image::distribution.svg[]
 
 == Git vs CVS/SVN
 
