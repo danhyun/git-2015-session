@@ -1,11 +1,48 @@
-== Git Objects
+== Git Branch
 
-[graphviz, "git_objects", "svg"]
+[graphviz, "git-branch"]
 ....
-digraph git_objects {
-     commit -> tree;
-     tree -> file1;
-     tree -> file2;
-     tree -> file3;
+digraph gg {
+  rankdir=LR
+  subgraph cluster0 {
+    a -> b -> c;
+    label = "master";
+    color=black;
+  }
+  
+  subgraph cluster1 {
+    d -> e -> f;
+    color=black;
+    node [style=filled]
+    label = "feature";
+  }
+  
+  a[label="Commit A"];
+  b[label="Commit B"];
+  
+  c -> d;
+}
+....
+
+== Git Merge
+[graphviz, "git-merge"]
+....
+digraph gh {
+  rankdir=LR
+  subgraph cluster0 {
+    a -> b -> c -> g;
+    label = "master";
+    color=black;
+  }
+  
+  subgraph cluster1 {
+    d -> e -> f;
+    color=black;
+    node [style=filled]
+    label = "feature";
+  }
+  
+  c -> d;
+  f -> g;
 }
 ....
