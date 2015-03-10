@@ -30,43 +30,7 @@ include::02-git-fundamentals.adoc[]
 
 include::03-git-basic-commands.adoc[]
 
-== Typical local workflow
-
-== Skipping `git add`
-
-----
-$ git commit --all -m "#yolo"
-----
-
-== Undoing commit
-
-== .gitignore
-
-== Collaborting
-
-== git push
-
-=== `push`
-
-== git add gotcha
-
-When modifying an added file, you'll need to re-add to stage the latest changes otherwise they won't make the commit.
-
-Demonstrate git add stuff, demonstrate `git commit -am`
-
-== reverting work
-
-show how to reset files to previous version
-
-== git stash
-
-show how stashing works
-
-== conflicts
-
-show how conflicts work
-
-introduce merge, fetch, pull, remote update rebasing
+include::04-everyday-git.adoc[]
 
 == Best practices
 

@@ -1,0 +1,83 @@
+== Everyday git
+
+== `git add everything`
+[source,subs="verbatim,quotes"]
+----
+$ git add .
+$ git commit -m "#yolo"
+[master (root-commit) e96454d] #yolo
+ 2 files changed, 1 insertion(+)
+ create mode 100644 *Hello.class*
+ create mode 100644 Hello.java
+----
+
+== NO
+
+----
+create mode 100644 Hello.class
+----
+
+image::no.gif[]
+
+== Removing files
+
+----
+$ git rm Hello.class
+rm 'Hello.class'
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    Hello.class
+----
+
+=== Removing Files
+
+Don't forget to commit
+
+----
+$ git commit -m "Remove generated files"
+[master c36a69a] Remove generated files
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 Hello.class
+----
+
+== .gitignore
+
+`.gitignore` lives at the root of the repository
+
+----
+# ignore generated files
+*.class
+# ignore maven output
+target/
+# ignore gradle output
+build/
+----
+
+== Collaborting
+
+== git push
+
+=== `push`
+
+== git add gotcha
+
+When modifying an added file, you'll need to re-add to stage the latest changes otherwise they won't make the commit.
+
+Demonstrate git add stuff, demonstrate `git commit -am`
+
+== reverting work
+
+show how to reset files to previous version
+
+== git stash
+
+show how stashing works
+
+== conflicts
+
+show how conflicts work
+
+introduce merge, fetch, pull, remote update rebasing
