@@ -47,6 +47,31 @@ image::lame.gif[]
 $ ssh-keygen -t rsa -C "dan@hyunlabs.com"
 ----
 
+=== ssh-keygen output
+
+----
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/vagrant/.ssh/id_rsa.
+Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub.
+The key fingerprint is:
+64:59:65:dc:ad:81:85:26:9e:ad:dd:d7:7a:21:75:e9 dan@hyunlabs.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|          .oo=.. |
+|         o..= o .|
+|        +. =   o.|
+|       o  o . .o.|
+|        S  o .o o|
+|          . ...Eo|
+|              .o.|
+|              . .|
+|               . |
++-----------------+
+----
+
 === Upload public key
 
 image::stash-key-upload.png[]
