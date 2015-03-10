@@ -119,30 +119,132 @@ $ git branch -v
   neato-branch 1f1f2ae README
 ----
 
-image::git-branch-merge.PNG[width=500]]
+image::git-branch-merge.PNG[width=500]
 
-== Collaborating
+== Collaboration
+
+[source,subs="verbatim,quotes"]
+----
+$ git remote add origin <URL> <1>
+----
+<1> Any valid URL
 
 == git push
 
-=== `push`
+----
+$ git push origin master
+Counting objects: 9, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (9/9), 1.09 KiB | 0 bytes/s, done.
+Total 9 (delta 0), reused 0 (delta 0)
+To ../demo-remote
+ * [new branch]      master -> master
+----
 
-== git add gotcha
+== Updating from remotes
 
-When modifying an added file, you'll need to re-add to stage the latest changes otherwise they won't make the commit.
+----
+$ git fetch
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+   1f1f2ae..ecf757d  master     -> origin/master
+----
 
-Demonstrate git add stuff, demonstrate `git commit -am`
+== Merge from origin/master
 
-== reverting work
+----
+$ git merge origin/master
+Updating 1f1f2ae..ecf757d
+Fast-forward
+ Hello.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+----
 
-show how to reset files to previous version
+== All in one go
 
-== git stash
+----
+$ git pull origin master
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+ * branch            master     -> FETCH_HEAD
+   1f1f2ae..ecf757d  master     -> origin/master
+Updating 1f1f2ae..ecf757d
+Fast-forward
+ Hello.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+----
 
-show how stashing works
+== Git push
 
-== conflicts
+What happens when +
+code changes?
 
-show how conflicts work
+----
+$ git push origin master
+To ../demo-remote
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to '../demo-remote'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+----
 
-introduce merge, fetch, pull, remote update rebasing
+== Conflict
+
+----
+$ git pull origin master
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From ../demo-remote
+ * branch            master     -> FETCH_HEAD
+   ecf757d..fd10976  master     -> origin/master
+Auto-merging Hello.java
+CONFLICT (content): Merge conflict in Hello.java
+Automatic merge failed; fix conflicts and then commit the result.
+----
+
+== Resolving Conflict
+
+----
+$ cat Hello.java
+<<<<<<< HEAD
+public class Hello { public static void main(String[] args) { System.out.println("Hallo, Welt again!"); } }
+=======
+public class Hello { public static void main(String[] args) { System.out.println("Hello, World again!"); } }
+>>>>>>> fd10976633568cd872f2d1aa64d97429957d73bb
+----
+
+=== Commit
+
+----
+$ git commit -am "resolve conflict"
+[master b0ae7d5] resolve conflict
+----
+
+=== Push
+
+----
+$ git push origin master
+Counting objects: 8, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 514 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To ../demo-remote
+   fd10976..b0ae7d5  master -> master
+----
+
+== Final product
+
+image::git-resolve-conflict.PNG[width=600]
